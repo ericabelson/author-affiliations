@@ -1,5 +1,3 @@
-
-# fetch_affiliations_from_bib.py
 import bibtexparser
 import requests
 import pandas as pd
@@ -8,8 +6,8 @@ import re
 
 def get_affiliations_from_bib(bib_file_path="works.bib"):
     """
-    Parses a .bib file, queries OpenAlex for author affiliations,
-    and returns a DataFrame with authors and their affiliations.
+    Parses a BibTeX file, queries OpenAlex for author affiliations based on DOI or title,
+    and returns a Pandas DataFrame with author names and their affiliations.
     """
     try:
         with open(bib_file_path, encoding='utf-8') as bibtex_file:
@@ -53,8 +51,8 @@ def get_affiliations_from_bib(bib_file_path="works.bib"):
             else:
                 parts = author_name_str.strip().split(' ')
                 last_name = parts[-1]
-                first_name_parts = " ".join(parts[:-1])
-            
+                first_name_parts = " ".join(parts[:-1)
+
             # Normalize to "First Last" for consistency in lookups if needed
             # and for the final output, though OpenAlex might handle variations.
             full_name_normalized = f"{first_name_parts} {last_name}".strip()
@@ -85,7 +83,7 @@ def get_affiliations_from_bib(bib_file_path="works.bib"):
                             if (local_author["last_name"].lower() in author_name_oa.lower() and
                                 (not local_author["first_name_parts"] or local_author["first_name_parts"][0].lower() in author_name_oa.lower())):
                                 if local_author["full_name"] not in current_entry_authors: # Add if not already found for this paper
-                                    current_entry_authors[local_author["full_name"]] = affiliation_name
+                                    current_entry_authors[local_author["full_name" = affiliation_name
                                     print(f"    Found (DOI): {local_author['full_name']} - {affiliation_name}")
                                 break # Found match for this OA author
                 time.sleep(0.1) # Be polite to the API
@@ -98,11 +96,11 @@ def get_affiliations_from_bib(bib_file_path="works.bib"):
         # For authors not found via DOI, or if no DOI, try with title + author name (less reliable)
         for author_info in authors_list:
             author_full_name = author_info["full_name"]
-            if author_full_name in current_entry_authors and current_entry_authors[author_full_name] is not None:
+            if author_full_name in current_entry_authors and current_entry_authors[author_full_name is not None:
                 # Already found with DOI and has affiliation
                 all_authors_data.append({
                     "author_full_name": author_full_name,
-                    "affiliation": current_entry_authors[author_full_name],
+                    "affiliation": current_entry_authors[author_full_name,
                     "doi_used": doi if doi else "N/A",
                     "title_used": title[:100]
                 })
@@ -145,7 +143,7 @@ def get_affiliations_from_bib(bib_file_path="works.bib"):
                     "author_full_name": author_full_name,
                     "affiliation": None,
                     "doi_used": "N/A",
-                    "title_used": title[:100] if title else "N/A"
+                    "title_used": title[:100 if title else "N/A"
                 })
                  print(f"    Skipping OpenAlex query for {author_full_name} due to missing DOI and insufficient title.")
             time.sleep(0.1) # Be polite
@@ -205,5 +203,4 @@ if __name__ == "__main__":
         print("\nPreview of the first few rows:")
         print(affiliations_df.head())
     else:
-        print("\nNo affiliation data generated.")
-
+        print("\nNo affiliation data to save.")
