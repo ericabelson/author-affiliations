@@ -1,6 +1,6 @@
 # Author Affiliations Extractor
 
-When submitting NSF grants, applicants must list all co-authors from the current year and the four prior years. Export your works from ORCID as a BibTeX file named `works.bib`, then run this script to gather each paper's authors and their affiliations.
+When submitting NSF grants, applicants must list all co-authors from the previous five years. Export your works from ORCID as a BibTeX file named `works.bib`, then run this script to gather each paper's authors and their affiliations.
 
 ## What it does
 
