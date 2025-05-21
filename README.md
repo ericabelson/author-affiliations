@@ -5,7 +5,7 @@ When submitting NSF grants, applicants must list all co-authors from the prior 4
 ## What it does
 
 `fetch_affiliations_from_bib.py` parses your BibTeX file, looks up missing DOIs, then queries Crossref and OpenAlex to collect affiliation information for every author.
-It outputs a CSV `bib_authors_with_affils.csv` with columns for author name, affiliation, DOI, and title.  Use this to compile your required co-author list.
+It outputs a CSV `bib_authors_with_affils.csv` with columns for author name, affiliation, DOI, and title.  
 
 ## Usage
 
